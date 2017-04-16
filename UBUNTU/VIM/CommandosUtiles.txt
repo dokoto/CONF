@@ -1,0 +1,98 @@
+#Ver numeros de linea
+:set number
+# JS Pretty Print
+:call JsBeautify()
+Ctrl + f
+
+# Explorardor de fichero
+:Explorer
+
+# SplitScreen: Abrir
+:split
+:vsplit
+
+# Ir hacia atras
+Ctrl + o
+
+# SplitScreen: Cambiar tamaño de ventanas en splitscreen
+Ctrl + [+,-]
+
+# SpliScreen: Ir de una ventana a otra( Despues de pulsar Ctrl+w pulsar un cursor)
+Ctrl + w
+
+
+# Pestañas
+- Nueva pestaña: Ctrl + t
+- Siguente pestaña: Ctrl + n
+- Anterior pestaña: Ctrol + p
+
+# Ir hacia atras
+Ctrl + 6
+
+# Deshacer
+:u
+
+# Rehacer
+: Ctrl + r
+
+# Ir primera linea
+:gg
+
+# Ir ultima linea
+:G
+
+# Ir a un numero de linea
+:Numero | :25
+
+# Guardar como
+:w [nombre fichero nuevo]
+
+# Substituir una cadena de texto A por B en todo el texto
+:%s/A/B/g
+
+# Substituir una cadena de texto A por B en todo el texto
+:%s/A/B/g
+
+# Listar todos los ficheros abiertos (buffers)
+:files ó :buffers
+
+# Ir al buffer X (los numeros aparecen al hacer un :files o :buffers *en plural*)
+:file X ó :buffer X
+
+Modo Visual
+
+Como ya hemos comentado, para acceder a este modo se debe estar en modo normal y pulsar ‘v’. No obstante, si en lugar de ‘v’ pulsamos ‘Ctrl+v’ pasaremos al modo visual en bloque (permite seleccionar un bloque de texto por columnas en lugar de por filas). Y si pulsamos ‘gv’ se repetirá la última selección.
+
+Seleccionar texto utilizando h(izquierda), j (arriba), k (abajo) y l (derecha) o con los cursores del teclado.
+Es posible aplicar las mismas instrucciones vista en el modo comando y modo normal, pero esto solo se realizará sobre el texto seleccionado.
+Si seleccionamos texto y paisamos a modo comando pulsando ‘:’ se nos mostrar una linea como esta “:’ <,’>”, no debemos borrar estos símbolos ya que es la forma de reconocer vim que estamos aplicando el comando al texto seleccionado.
+
+# Seleccionar texto
+v
+
+# Copiar el texto selecionado
+y
+
+# Copiar el texto selecionado en el portapapeles del sistema (teclear el + también)
+“+y
+
+# Cortar el texto seleccionado
+d
+
+# Pegar el texto copiado o cortado. Debemos estar en modo normal, se pasará automáticamente a ese modo despues de copiar o cortar con ‘y’ o ‘d’.
+p
+
+# Pegar el texto desde el portapapeles del sistema (teclear el + también)
+“+p
+
+# Indentar
+>>
+
+# Indentar
+<<
+
+# Modo visual seleccionando columnas en lugar de lineas
+CTRL+v
+
+# Insertar texto delante de la columna
+CTRL+v SHIFT+i ‘texto’ ESC

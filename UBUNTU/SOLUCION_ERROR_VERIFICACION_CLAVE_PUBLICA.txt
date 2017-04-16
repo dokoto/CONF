@@ -1,0 +1,7 @@
+Si cuando haces $> apt-get update aparece:
+W: Error de GPG: http://download.virtualbox.org/virtualbox/debian xenial InRelease: Las firmas siguientes no se pudieron verificar porque su clave pública no está disponible: NO_PUBKEY A2F683C52980AECF
+W: El repositorio «http://download.virtualbox.org/virtualbox/debian xenial InRelease» no está firmado.
+
+Usa el siguiete comando y cambia la clave del final: 
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A2F683C52980AECF
