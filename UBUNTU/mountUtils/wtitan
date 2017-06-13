@@ -1,0 +1,4 @@
+#!/bin/bash
+
+DIR="00:1E:67:13:EC:22";
+wakeonlan "$DIR";

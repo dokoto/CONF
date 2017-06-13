@@ -1,0 +1,6 @@
+#!/bin/bash
+
+host="titan";
+user="administrador";
+utitan;
+ssh -t "$user@$host" 'sudo shutdown -h now'

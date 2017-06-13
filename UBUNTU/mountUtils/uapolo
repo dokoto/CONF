@@ -1,0 +1,10 @@
+#!/bin/bash
+
+dest="/home/administrador/mnt/apolo";
+
+if sudo umount -f "$dest"; then
+    echo "Umount success on $dest";
+else
+    echo "Umount failed on $dest";
+    sudo lsof "$dest";
+fi

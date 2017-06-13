@@ -1,0 +1,8 @@
+#!/bin/bash
+
+origin="titan:/ALMACEN";
+dest="/home/administrador/mnt/almacen";
+sudo mount "$origin" "$dest";
+origin="titan:/home/administrador";
+dest="/home/administrador/mnt/titan";
+sudo mount "$origin" "$dest";

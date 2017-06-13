@@ -1,0 +1,17 @@
+#!/bin/bash
+
+dest="/home/administrador/mnt/almacen";
+if sudo umount -f "$dest"; then
+    echo "Umount success on $dest";
+else
+    echo "Umount failed on $dest";
+    sudo lsof "$dest";
+fi
+
+dest="/home/administrador/mnt/titan";
+if sudo umount -f "$dest"; then
+    echo "Umount success on $dest";
+else
+    echo "Umount failed on $dest";
+    sudo lsof "$dest";
+fi

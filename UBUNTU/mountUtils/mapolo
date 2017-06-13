@@ -1,0 +1,5 @@
+#!/bin/bash
+
+origin="apolo:/home/administrador";
+dest="/home/administrador/mnt/apolo";
+sudo mount "$origin" "$dest";
