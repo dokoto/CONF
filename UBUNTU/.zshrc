@@ -105,17 +105,14 @@ alias ss='ps -A|grep'
 alias hgrep='history|grep'
 alias version='lsb_release -da'
 alias where='whereis'
-#alias mtitan='sudo mount titan:/ALMACEN ~/ALMACEN'
-#alias mapolo='sudo mount apolo:/home/administrador /mnt/apolo'
 alias snpm='sudo npm'
 alias chrome='chromium-browser --disable-web-security --ignore-certificate-errors --user-data-dir="/tmp/"'
-#alias wtitan='wakeonlan 00:1E:67:13:EC:22'
-#alias wapolo='wakeonlan 50:46:5d:4e:b9:87'
 alias hwinfo='inxi -F -xx'
-
 export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:/usr/local/android-studio/bin:/home/administrador/Desarrollos/Personal/mountUtils
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:/usr/local/android-studio/bin:/home/administrador/Desarrollos/Personal/Conf/UBUNTU/mountUtils:/home/administrador/Desarrollos/Personal/Conf/UBUNTU/touchpad
 
 
 export NVM_DIR="/home/administrador/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
