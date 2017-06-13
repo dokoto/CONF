@@ -1,0 +1,6 @@
+#!/bin/bash
+
+id=$(xinput list|grep TouchPad|grep 'id=[[:digit:]][[:digit:]]'|grep -o '[[:digit:]][[:digit:]]') ;
+xinput list|grep TouchPad ;
+echo "Input id: $id" ;
+xinput set-prop $id "Device Enabled" 1 ;
