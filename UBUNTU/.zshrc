@@ -108,6 +108,14 @@ alias where='whereis'
 alias snpm='sudo npm'
 alias chrome='chromium-browser --disable-web-security --ignore-certificate-errors --user-data-dir="/tmp/"'
 alias hwinfo='inxi -F -xx'
+alias pacmans='yaourt'
+alias misalias='cat ~/.zshrc|grep ^alias'
+
+## GIT ALIAS
+alias git-commits-local='git log @{u}..'
+alias git-commit-list-files='git diff-tree --no-commit-id --name-only -r'
+alias git-status-no-pom='git status|grep -v pom.xml'
+
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:/usr/local/android-studio/bin:/home/administrador/Desarrollos/Personal/Conf/UBUNTU/mountUtils:/home/administrador/Desarrollos/Personal/Conf/UBUNTU/touchpad
 
