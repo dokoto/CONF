@@ -1,0 +1,9 @@
+$> sudo pacman -Syu
+The above command will mostly fix the problem and update all your packages.
+
+$> sudo pacman -Suu
+The above command will update all packages, then downgrade all affected packages.
+
+And then, do the full upgrade using command:
+
+$> sudo pacman -Syyu
