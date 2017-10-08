@@ -2,12 +2,17 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/administrador/.oh-my-zsh
+export ZSH=/Users/manuelalfarosierra/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="dallas"
+POWERLEVEL9K_MODE='awesome-patched'
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+POWERLEVEL9K_COLOR_SCHEME='light'
+#dallas
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +56,7 @@ ZSH_THEME="dallas"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(sudo git history taskwarrior zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -80,7 +85,6 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -110,17 +114,14 @@ alias chrome='chromium-browser --disable-web-security --ignore-certificate-error
 alias hwinfo='inxi -F -xx'
 alias pacmans='yaourt'
 alias misalias='cat ~/.zshrc|grep ^alias'
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+alias mproxy-vpm='sudo mount proxy_vpn:/home/administrador mnt/proxy'
+alias start-mongod='mongod --config /usr/local/etc/mongod.conf'
 
 ## GIT ALIAS
 alias git-commits-local='git log @{u}..'
 alias git-commit-list-files='git diff-tree --no-commit-id --name-only -r'
 alias git-status-no-pom='git status|grep -v pom.xml'
 
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:/usr/local/android-studio/bin:/home/administrador/Desarrollos/Personal/Conf/UBUNTU/mountUtils:/home/administrador/Desarrollos/Personal/Conf/UBUNTU/touchpad
-
-
-export NVM_DIR="/home/administrador/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
