@@ -113,7 +113,9 @@ alias snpm='sudo npm'
 alias chrome='chromium-browser --disable-web-security --ignore-certificate-errors --user-data-dir="/tmp/"'
 alias hwinfo='inxi -F -xx'
 alias pacmans='yaourt'
-alias misalias='cat ~/.zshrc|grep ^alias'
+alias alias-help='cat ~/.bashrc|grep ^alias'
+alias smem='ps aux --sort -rss'
+alias smems='ps aux | sort -rn -k 5,6'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 alias mproxy-vpm='sudo mount proxy_vpn:/home/administrador mnt/proxy'
 alias start-mongod='mongod --config /usr/local/etc/mongod.conf'
@@ -122,6 +124,11 @@ alias start-mongod='mongod --config /usr/local/etc/mongod.conf'
 alias git-commits-local='git log @{u}..'
 alias git-commit-list-files='git diff-tree --no-commit-id --name-only -r'
 alias git-status-no-pom='git status|grep -v pom.xml'
+alias update-watch='touch $(git status -s|grep -v pom.xml|cut -c4-)'
+
+## JAVA ALIAS
+alias java-ls="ps -o pid,user,cmd -C java | sed -e 's/\([0-9]\+ *[^ ]*\) *[^ ]* *\([^$]*\)/\1 \2/' -e 's/-c[^ ]* [^ ]* \|-[^ ]* //g'"
+
 
 export NVM_DIR="$HOME/.nvm"
   . "/usr/local/opt/nvm/nvm.sh"
