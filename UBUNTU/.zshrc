@@ -119,12 +119,17 @@ alias smems='ps aux | sort -rn -k 5,6'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 alias mproxy-vpm='sudo mount proxy_vpn:/home/administrador mnt/proxy'
 alias start-mongod='mongod --config /usr/local/etc/mongod.conf'
+alias cmp='meld'
+
+#NODE
+alias fix-node-watch='echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
 ## GIT ALIAS
 alias git-commits-local='git log @{u}..'
 alias git-commit-list-files='git diff-tree --no-commit-id --name-only -r'
 alias git-status-no-pom='git status|grep -v pom.xml'
 alias update-watch='touch $(git status -s|grep -v pom.xml|cut -c4-)'
+alias git-repo-url='git config --get remote.origin.url'
 
 ## JAVA ALIAS
 alias java-ls="ps -o pid,user,cmd -C java | sed -e 's/\([0-9]\+ *[^ ]*\) *[^ ]* *\([^$]*\)/\1 \2/' -e 's/-c[^ ]* [^ ]* \|-[^ ]* //g'"
