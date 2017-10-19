@@ -85,6 +85,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ALIAS FUNCTIONS
 function git_diff() {
+  if cmd_exist "git" "Use: $> ai git" ; then return 0 ; fi ;
   if [ $# -eq 0 ]
     then
       echo "use: $> $0 [path to file] [id-commit-1] [id-commit-2]"
@@ -98,6 +99,7 @@ function net_up_kqof_for_test() {
 }
 
 function net_test_record() {
+  if cmd_exist "mvn" "Use: $> ai mvn" ; then return 0 ; fi ;
   if [ $# -eq 0 ]
     then
       echo "use: $> $0 @testName"
@@ -107,6 +109,7 @@ function net_test_record() {
 }
 
 function net_test_playback() {
+  if cmd_exist "mvn" "Use: $> ai mvn" ; then return 0 ; fi ;
   if [ $# -eq 0 ]
     then
       echo "use: $> $0 @testName"
@@ -116,6 +119,7 @@ function net_test_playback() {
 }
 
 function net_test() {
+  if cmd_exist "mvn" "Use: $> ai mvn" ; then return 0 ; fi ;
   if [ $# -eq 0 ]
     then
       echo "use: $> $0 @testName"
@@ -125,11 +129,33 @@ function net_test() {
 }
 
 function net_up_for_dbg_eclipse() {
+  if cmd_exist "mvn" "Use: $> ai mvn" ; then return 0 ; fi ;
   if [ $# -eq 0 ]
     then
       echo "use: $> $0 @testName"
     else
       mvn clean verify -Duser.data=ei -Dtags.filter="$1" -P develop,failsafe-debug -Dwebdriver.firefox.profile=default
+  fi
+}
+
+function cmd_exist() {
+  if hash "$1" 2>/dev/null ;
+    then
+      return 1
+    else
+      echo "Command $1 no exists"
+      echo "$2"
+      return 0      
+  fi
+}
+
+function cmp_files() {
+  if cmd_exist "meld" "Use: $> ai meld" ; then return 0 ; fi ;
+  if [ $# -eq 0 ]
+    then
+      echo "use: $> $0 file_A file_B"
+    else
+      meld "$1" "$2"
   fi
 }
 
@@ -171,7 +197,8 @@ alias auu='sudo aptitude safe-upgrade'
 alias alias-help='cat ~/.bashrc|grep ^alias'
 alias smem='ps aux --sort -rss'
 alias smems='ps aux | sort -rn -k 5,6'
-alias cmp='meld'
+alias cmp='cmp_files'
+alias compare='cmp_files'
 alias edit='subl'
 
 #NODE
