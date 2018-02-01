@@ -8,8 +8,30 @@ export TERM="xterm-256color"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_MODE='nerdfont-complete'
+#--------------------------------------------------------------------------------
+# COMO INSTALO TODA ESTA MIERDA [OBLIGATORIO]
+#
+# $> ai zsh
+# @url https://github.com/robbyrussell/oh-my-zsh (Basic Installation > via curl)
+# @url https://github.com/bhilburn/powerlevel9k/wiki/Install-Instructions#step-1-install-powerlevel9k (Option 2: Install for Oh-My-ZSH)
+#--------------------------------------------------------------------------------
+# FUENTES GENERALES [OBLIGATORIO]
+#
+# @url https://gist.github.com/renshuki/3cf3de6e7f00fa7e744a
+#
+# $> wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+# $> wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+# $> mv PowerlineSymbols.otf ~/.fonts/
+# $> mkdir -p .config/fontconfig/conf.d #if directory doesn't exists
+# $> fc-cache -vf ~/.fonts/
+# $> mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+#--------------------------------------------------------------------------------
+# COMO INSTALAR LAS PUTAS FUENTES !!!! [OBLIGATORIO]
+#
+# https://github.com/gabrielelana/awesome-terminal-fonts (Sigue las instrucciones en "How to install(Linux) )
+#--------------------------------------------------------------------------------
+
+POWERLEVEL9K_MODE='awesome-fontconfig'
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time ram load)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
