@@ -127,53 +127,6 @@ function git_diff_ui() {
   fi
 }
 
-function net_up_kqof_for_test() {
-  mvn clean -o jetty:run-forked -P localDevelopment,maggie -Dlocal.compile.compass -Dforce.real=true
-}
-
-function net_up_for_dbg_eclipse() {
-  if cmd_exist "mvn" "Use: $> ai mvn" ; then return 0 ; fi ;
-  if [ $# -eq 0 ]
-    then
-      echo "use: $> $0 @testName"
-    else
-      mvn clean verify -Duser.data=ei -Dtags.filter="$1" -P develop,failsafe-debug -Dwebdriver.firefox.profile=default
-  fi
-}
-
-function net_test_record() {
-  if check_bdd_folder ; then return 0 ; fi ;
-  if cmd_exist "mvn" "Use: $> ai mvn" ; then return 0 ; fi ;
-  if [ $# -eq 0 ]
-    then
-      echo "use: $> $0 @testName"
-    else
-      mvn verify -Duser.data=ei -Dmaggie.mode=RECORD -Dtags.filter="$1" -P develop -Dmaggie.start.timeout=120 -Dtake.screenshots=true -Dwebdriver.firefox.profile=default
-  fi
-}
-
-function net_test_playback() {
-  if check_bdd_folder ; then return 0 ; fi ;
-  if cmd_exist "mvn" "Use: $> ai mvn" ; then return 0 ; fi ;  
-  if [ $# -eq 0 ]
-    then
-      echo "use: $> $0 @testName"
-    else
-      mvn verify -Duser.data=ei -Dmaggie.mode=PLAYBACK -Dtags.filter="$1" -P develop -Dwebdriver.firefox.profile=default
-  fi
-}
-
-function net_test() {
-  if check_bdd_folder ; then return 0 ; fi ;
-  if cmd_exist "mvn" "Use: $> ai mvn" ; then return 0 ; fi ;  
-  if [ $# -eq 0 ]
-    then
-      echo "use: $> $0 @testName"
-    else
-      mvn verify -Duser.data=ei  -Dtags.filter="$1" -P develop -Dwebdriver.firefox.profile=default
-  fi
-}
-
 function cmd_exist() {
   if hash "$1" 2>/dev/null ;
     then
@@ -288,13 +241,6 @@ alias git-abort-merge='git merge --abort'
 alias java-ls="ps -o pid,user,cmd -C java | sed -e 's/\([0-9]\+ *[^ ]*\) *[^ ]* *\([^$]*\)/\1 \2/' -e 's/-c[^ ]* [^ ]* \|-[^ ]* //g'"
 alias java-versions-ls="update-java-alternatives --list"
 alias java-change="sudo update-alternatives --config java"
-
-## NET ALIAS
-alias net-up-for-test='net_up_kqof_for_test'
-alias net-test='net_test'
-alias net-test-playback='net_test_playback'
-alias net-test-record='net_test_record'
-alias net-up-for-dbg-eclipse='net_up_for_dbg_eclipse'
 
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PATH="$HOME/.jenv/bin:$PATH"
