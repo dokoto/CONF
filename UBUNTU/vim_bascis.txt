@@ -29,7 +29,14 @@ Ctrl + r
 3º Abre vim y ejecuta> :PluginInstall
 4º Para el tener eslint mira en vimrc abajo y sigue instrucciones
 4º Ctrl + c | Ctrl + v > Mira tambien las instruccion de vimrc
+5º Autocompletado :
+  - Uno de plugins que se ha instalado es 'valloric/youcompleteme', para que rule ahi que seguir las intrucciones de las siguientes urls:
+  - https://medium.com/@rahul11061995/autocomplete-in-vim-for-js-developer-698c6275e341
+  - https://github.com/Valloric/YouCompleteMe
+6º Repo para mas plugins:
+  - https://vimawesome.com/
 
+ 
 *******************************************
 * GUIA VIEJA
 *******************************************
