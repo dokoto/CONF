@@ -35,7 +35,8 @@ Ctrl + r
   - https://github.com/Valloric/YouCompleteMe
 6º Repo para mas plugins:
   - https://vimawesome.com/
-
+7º Com configurar la formateo del codigo javascript
+  - https://github.com/maksimr/vim-jsbeautify
  
 *******************************************
 * GUIA VIEJA
