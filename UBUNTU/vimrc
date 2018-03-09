@@ -4,32 +4,22 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" *********************************************
-" PLUGINS
-" *********************************************
-" Repos vundle :
-" https://vimawesome.com/
-" *********************************************
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'crusoexia/vim-monokai'
-" I - Arbol de directorios izq
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
-" F - Arbol de directorios izq
-" I - Barra inferior con info
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-" Añade info sobre git
-Plugin 'tpope/vim-fugitive'
-" F - Barra inferior con info
 Plugin 'posva/vim-vue'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'mtscout6/syntastic-local-eslint.vim'
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -56,23 +46,35 @@ set expandtab
 set encoding=utf-8
 set mouse:a
 
+"********************************************
+" Syntaxt checker - Con eslint
+"********************************************
+" 1º - Eslint debe estar instalado globalmente
+" 2º - en package.json > script > 'lint': 'eslint .'
+" 3º - Comandos:
+"    :SyntasticCheck [Ejecuta eslint]
+"    :lclose [Cierra la ventana de errores]
+"    :help symtastic-checker-options [muestra la ayuda]
+"********************************************
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
-
-" Si necesitas abrir el arbol cuando se abra vim
-" au VimEnter *  NERDTree
+"*******************************************
 
 map <c-f> :call JsBeautify()<cr>
 map <C-b> :NERDTreeToggle<CR>
-
-" Si necesitas abrir el arbol cuando se abra vim
-"let g:nerdtree_tabs_open_on_console_startup=1
+:inoremap <C-v> <ESC>"+pa
+:vnoremap <C-c> "+y
+:vnoremap <C-d> "+d
 let g:airline#extensions#tabline#enabled = 1
+" Si no funciona el Ctrl+c | Ctrl+v es porque vim no esta compilado con
+" xterm-clipboar, buscar $> vim --version | grep xterm|clipboard
+" si instalamos vim-gtk nos añade esta funcionalidad y podemos seguir usando
+" comandos. ESTO EN LINUX, si estas en macos prueba y sino ajusta con internet
 set clipboard=unnamedplus

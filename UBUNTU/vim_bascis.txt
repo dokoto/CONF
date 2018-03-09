@@ -1,5 +1,46 @@
+** Debria funcionar el raton, con el puedes cambiar, crear tabs, seleccionar para copiar
+# ABRIR FICHERO
+:edit [file]
+# ABRIR FICHERO EN TAB
+:tabfind [ruta fichero]
+# CERRAR TAB
+:tabclose
+# BUSCAR FICHERO
+:find /**/[fichero]
+# SELECCIONAR TEXTO
+En modo lectura, pulsa: v (mueve el cursor) 
+# COPIAR TEXTO SELECCIONADO
+En modo lectura, pulsa: y
+# BORRA/CORTAR LINEA [ES LO MISMO]
+En modo lectura, pulsa: d
+# DESHACER CAMBIO
+En modo lectura, pulsa: u
+#RE-HACER
+Ctrl + r
+#RECARGAR VIMRC
+:so %
+
+
+******************************************
+* COMO INSTALAR EL VIM (en ubuntu pero en macos lo mismo, pero apoyate en internet)
+*****************************************
+1º Usa Vundle para instalar paquetes: https://github.com/VundleVim/Vundle.vim
+2º Crea en ~/.vimrc y copia el contenido del .vimrc que tienes en github UBUNTU/vimrc
+3º Abre vim y ejecuta> :PluginInstall
+4º Para el tener eslint mira en vimrc abajo y sigue instrucciones
+4º Ctrl + c | Ctrl + v > Mira tambien las instruccion de vimrc
+
+*******************************************
+* GUIA VIEJA
+*******************************************
 #Ver numeros de linea
 :set number
+
+# Buscar ficheros
+:find **/filename.js  [Este lo busca y lo abre pero solo puede existir uno]
+:e **/dir/file.js
+:r! find . -type f -iname "file.js"
+
 # JS Pretty Print
 :call JsBeautify()
 Ctrl + f
