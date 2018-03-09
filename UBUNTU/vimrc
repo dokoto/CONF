@@ -80,9 +80,13 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
-au VimEnter *  NERDTree
+" Si necesitas abrir el arbol cuando se abra vim
+" au VimEnter *  NERDTree
 
 map <c-f> :call JsBeautify()<cr>
-let g:nerdtree_tabs_open_on_console_startup=1
+map <C-b> :NERDTreeToggle<CR>
+
+" Si necesitas abrir el arbol cuando se abra vim
+"let g:nerdtree_tabs_open_on_console_startup=1
 let g:airline#extensions#tabline#enabled = 1
 set clipboard=unnamedplus
