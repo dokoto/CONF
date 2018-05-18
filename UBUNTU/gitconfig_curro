@@ -1,0 +1,38 @@
+[user]
+	name = Manuel Alfaro Sierra
+	email = malfaro@openknowledgenetwork.com
+[core]
+	fileMode = false
+[alias]
+    a = add
+    aa = add --all
+    ap = add --patch
+    c = commit --verbose
+    ca = commit --amend
+    co = checkout
+    d = diff
+    pul = pull
+    dc = diff --cached
+    s = status
+
+    lg   = !git --no-pager log --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' -n 20
+    llg  = !git --no-pager log --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' -n 40
+    lllg = !git --no-pager log --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' -n 80
+    long = !git --no-pager log --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+    this = rev-parse --abbrev-ref HEAD
+    pub = !git push origin $(git this)
+    log-branch = !git long $(git merge-base dev HEAD)..HEAD
+[credential]
+	helper = cache --timeout=3600
+[merge]
+	tool = vimdiff2
+	conflictstyle = merge
+[mergetool]
+	prompt = false
+[push]
+	default = current
+[color]
+	ui = auto
+[diff]
+    renameLimit = 999999
