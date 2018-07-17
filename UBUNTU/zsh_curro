@@ -10,10 +10,73 @@ ZSH_THEME="amuse"
 plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.fonts/*.sh
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+#######################################################################
+# COLORS
+#######################################################################
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+
+# Underline
+UBlack='\033[4;30m'       # Black
+URed='\033[4;31m'         # Red
+UGreen='\033[4;32m'       # Green
+UYellow='\033[4;33m'      # Yellow
+UBlue='\033[4;34m'        # Blue
+UPurple='\033[4;35m'      # Purple
+UCyan='\033[4;36m'        # Cyan
+UWhite='\033[4;37m'       # White
+
+# Background
+On_Black='\033[40m'       # Black
+On_Red='\033[41m'         # Red
+On_Green='\033[42m'       # Green
+On_Yellow='\033[43m'      # Yellow
+On_Blue='\033[44m'        # Blue
+On_Purple='\033[45m'      # Purple
+On_Cyan='\033[46m'        # Cyan
+On_White='\033[47m'       # White
+
+# High Intensity
+IBlack='\033[0;90m'       # Black
+IRed='\033[0;91m'         # Red
+IGreen='\033[0;92m'       # Green
+IYellow='\033[0;93m'      # Yellow
+IBlue='\033[0;94m'        # Blue
+IPurple='\033[0;95m'      # Purple
+ICyan='\033[0;96m'        # Cyan
+IWhite='\033[0;97m'       # White
+
+# Bold High Intensity
+BIBlack='\033[1;90m'      # Black
+BIRed='\033[1;91m'        # Red
+BIGreen='\033[1;92m'      # Green
+BIYellow='\033[1;93m'     # Yellow
+BIBlue='\033[1;94m'       # Blue
+BIPurple='\033[1;95m'     # Purple
+BICyan='\033[1;96m'       # Cyan
+BIWhite='\033[1;97m'      # White
+
+# High Intensity backgrounds
+On_IBlack='\033[0;100m'   # Black
+On_IRed='\033[0;101m'     # Red
+On_IGreen='\033[0;102m'   # Green
+On_IYellow='\033[0;103m'  # Yellow
+On_IBlue='\033[0;104m'    # Blue
+On_IPurple='\033[0;105m'  # Purple
+On_ICyan='\033[0;106m'    # Cyan
+On_IWhite='\033[0;107m'   # White
+
+NC='\033[0m' # No Color
 
 #######################################################################
 # FUNCTIONS
@@ -129,9 +192,70 @@ function compiless() {
 
 # OKN FUNCTIONS
 
-function stop_services() {
+function stop_all_services() {
   sudo service tomcat6 stop ;
   sudo service mysql stop ;
+  sudo service virtualbox stop ;
+  sudo service apache2 stop ;
+  sudo service php5-fpm stop ;
+  sudo service teamviewerd stop ;
+  sudo service circusd stop ;
+  sudo service memcached stop ;
+}
+
+function stop_heavy_services() {
+  sudo service tomcat6 stop ;
+  sudo service mysql stop ;
+  sudo service virtualbox stop ;  
+}
+
+function activate_campus_basic_services() {
+  sudo service apache2 start ;
+  sudo service php5-fpm start ;
+  sudo service teamviewerd start ;
+  sudo service circusd start ;
+  sudo service memcached start ;
+}
+
+chpwd()
+  case $PWD in
+    (/var/www/okn_localhost/campus) echo -e "${On_IYellow}${BIRed}ALERTA !! Estas en PHP7${NC}" ;;
+    (/var/www/okn_localhost_bis/campus) echo "${On_IYellow}${BIRed}ALERTA !! Estas en PHP5${NC}" ;;
+  esac
+
+run7() {
+    sudo service apache2 stop
+    sudo circusctl stop
+    set_config_var '_SERVER_NAME' 'localhost.oknlearning.com'
+    7up
+}
+
+run5() {
+    7down
+    set_config_var '_SERVER_NAME' 'localhost.okn.me'
+    sudo service apache2 start
+    sudo circusctl start
+}
+
+set_config_var() {
+    local name=$1
+    local value=$2
+    local new_line="defined('$name') || define('$name', '$value');"
+    sed -i "/defined('$name')/c$new_line" "/var/www/okn_localhost/config/config.php"
+}
+
+get_config_var() {
+    local name=$1
+    sed -n "s/^.*define('$name', '\(.*\)');$/\1/p" "/var/www/okn_localhost/config/config.php"
+}
+
+fixDump()
+{
+    sed -i -e 's/{{server_name}}/localhost.oknlearning.com/g' $1
+    sed -i -e 's/{{platform_name}}/localhost/g' $1
+    sed -i -e 's/{{platform_folder}}/okn_localhost/g' $1
+    sed -i -e 's/{{http_mode}}/http/g' $1
+    sed -i -e 's/{{cdn_url}}/localhost.oknlearning.com/g' $1
 }
 
 #######################################################################
@@ -170,6 +294,7 @@ alias compare='cmp_files'
 alias edit='subl'
 alias cmp_rc='cmp_rc'
 alias open='xdg-open'
+alias sapt='sudo apt'
 
 #NODE
 alias fix-node-watch='echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
@@ -201,20 +326,35 @@ alias java-change="sudo update-alternatives --config java"
 
 ## OKN
 alias ssh-pre='ssh -i /home/malfaro/.ssh/az-malfaro-20180205-1109.key -p 40002 preweb00.okn.me -t sudo -u atreyu sudo su -l atreyu'
-alias ssh-ssd='ssh desarrollo@desssd00.okn.me'
-alias go-campus='cd /var/www/okn_localhost/campus'
+alias ssh-ssd='ssh desarrollo@$DESASSD'
+alias go-campus-php5='cd /var/www/okn_localhost_bis/campus'
+alias go-campus-php7='cd /var/www/okn_localhost/campus'
 alias go-okn='cd /var/www/okn_localhost'
 alias go-player='cd /var/lib/tomcat6/players/icodeon_player2'
 alias go-ria='cd /var/www/RIA_COMPONENTS'
 alias log-services='tail -f $(find . -maxdepth 1 -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d'\'' '\'' -f 2-) | egrep -v "YiiBase|cometchat|Azure"'
-alias connect-db-ssd='mysql -uokn-user -pokn-pass -h desssd00.okn.me'
-alias build-webpack-prod='NODE_ENV=production webpack --progress'
-alias build-styles='compiless "themes/okn/less/okn-main.less" "themes/okn/css/okn-main.css"'
+alias connect-db-ssd='mysql -uokn-user -pokn-pass -h $DESASSD'
+alias campus-build-webpack-prod='NODE_ENV=production webpack --progress'
+alias campus-build-webpack-dev='webpack --progress --watch'
+alias campus-build-styles='compiless "themes/okn/less/okn-main.less" "themes/okn/css/okn-main.css"'
 alias lock='lxlock'
 alias open-okn='google-chrome-stable --incognito --new-window localhost.okn.me&'
-alias show-okn-users='cat ~/Documentos/okn-users.txt'
-alias show-vim_basics='less ~/Documentos/vim_bascis.txt'
-alias stop-services='stop_services'
+alias show-okn-users='cat ~/Documentos/MISC/okn-users.txt'
+alias show-vim_basics='less ~/Documentos/MISC/vim_bascis.txt'
+alias stop-all-services='stop_all_services'
+alias stop-heavy-services='stop_heavy_services'
+alias start-campus-basic-services='activate_campus_basic_services'
+alias og='gchecker -m open'
+alias cg='gchecker -m check'
+alias goToapache='ssh -i ~/.ssh/id_rsa_atreyu atreyu@172.18.0.2';
+alias goTophp='ssh -i ~/.ssh//id_rsa_atreyu atreyu@172.18.0.3';
+alias 7up='docker-compose --file /var/www/okn_docker/okn_systems/docker-compose.yml up --detach'
+alias 7down='docker-compose -f /var/www/okn_docker/okn_systems/docker-compose.yml down'
+alias apachelog7='docker exec -u root -ti ubuap2400000 tail -f /var/log/apache2/localhost.oknlearning.com_error.log'
+alias go7='docker exec -u root -ti ubuap2400000 /bin/bash'
+alias okn-print-all-queries-file='code -g /var/www/okn_localhost/campus/src/OKN/ExtendedPropel/Models/CustomConnectionWrapper.php:126'
+alias show-okn-queries='docker exec -u root -ti lplnx046-docker tail -f /glst/tmp/queries'
+
 
 #######################################################################
 # EXPORTS
@@ -226,5 +366,9 @@ export NVM_DIR="$HOME/.nvm"
 
 export PHOENIX='/var/www/okn_localhost'
 export CAMPUS="$PHOENIX/campus"
+export PHOENIX_PHP5='/var/www/okn_localhost_bis'
+export CAMPUS2="$PHOENIX_PHP5/campus"
 export PLAYER='/var/lib/tomcat6/players/icodeon_player2'
 export RIA='/var/www/RIA_COMPONENTS'
+export DESASSD_OLD="desssd00.okn.me"
+export DESASSD="desssd01.okn.me"
